@@ -1,0 +1,51 @@
+name: Build LineageOS 18.1
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v2
+        with:
+          sdk-platform: 'android-30'
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git-core build-essential zip curl git-lfs
+
+      - name: Configure Git
+        run: |
+          git config --global user.name 'shifty-d'
+          git config --global user.email 'ffoxy2870@gmail.com'
+
+      - name: Initialize LineageOS source
+        run: |
+          repo init -u https://github.com/LineageOS/android.git -b lineage-18.1 --git-lfs --depth=1
+          repo sync -c -j 16
+	        git clone https://github.com/parixxshit/android_device_xiaomi_spes --depth=1 -b 11.0 device/xiaomi/spes
+          git clone https://github.com/Jabiyeff/android_vendor_xiaomi_spes --depth=1 -b 11.0 vendor/xiaomi/spes
+	        git clone https://github.com/muralivijay/kernel_xiaomi_sm6225 --depth=1 kernel/xiaomi/spes
+	        git clone https://github.com/LineageOS/android_hardware_xiaomi --depth=1 -b lineage-18.1 hardware/xiaomi
+
+
+      - name: Build LineageOS
+        run: |
+          source build/envsetup.sh
+          lunch lineage_spes-userdebug
+          brunch lineage_spes-userdebug
