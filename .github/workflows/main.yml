@@ -31,8 +31,8 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config --global user.name 'shifty-d'
-          git config --global user.email 'ffoxy2870@gmail.com"
+          git config --global user.name "shifty-d"
+          git config --global user.email "ffoxy2870@gmail.com"
   
       - name: Clone device-specific repositories
         run: |
