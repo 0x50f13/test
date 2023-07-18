@@ -32,6 +32,7 @@ jobs:
           PATH="/home/runner/.bin:$PATH"
           curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
           chmod a+rx ~/.bin/repo
+          sudo mv ~/.bin/repo /bin/repo
 
       - name: Configure Git
         run: |
