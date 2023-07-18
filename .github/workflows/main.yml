@@ -33,7 +33,7 @@ jobs:
         run: |
           git config --global user.name 'shifty-d'
           git config --global user.email 'ffoxy2870@gmail.com"
-
+  
       - name: Clone device-specific repositories
         run: |
           repo init -u https://github.com/LineageOS/android.git -b lineage-18.1 --depth=1 --git-lfs
