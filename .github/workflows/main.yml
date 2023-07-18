@@ -29,9 +29,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y git-core build-essential zip curl git-lfs
           mkdir -p ~/.bin
-          PATH="${HOME}/.bin:${PATH}"
-          sudo curl https://storage.googleapis.com/git-repo-downloads/repo > /bin/repo
-          sudo chmod a+rx /bin/repo
+          PATH="/home/runner/.bin:$PATH"
+          curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
+          chmod a+rx ~/.bin/repo
 
       - name: Configure Git
         run: |
