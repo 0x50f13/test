@@ -41,6 +41,6 @@ jobs:
 
       - name: Build LineageOS
         run: |
-          build.sh -b out
+          ./build.sh -b out
           build/prepare-fake-ota.sh out/device_spes.tar.xz ota
           
