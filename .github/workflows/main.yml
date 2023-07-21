@@ -38,18 +38,9 @@ jobs:
         run: |
           git config --global user.name "shifty-d"
           git config --global user.email "ffoxy2870@gmail.com"
-  
-      - name: Clone device-specific repositories
-        run: |
-          repo init -u https://github.com/LineageOS/android.git -b lineage-18.1 --depth=1 --git-lfs
-          repo sync -c -j 16
-          git clone https://github.com/parixxshit/android_device_xiaomi_spes --depth=1 -b 11.0 device/xiaomi/spes
-          git clone https://github.com/Jabiyeff/android_vendor_xiaomi_spes --depth=1 -b 11.0 vendor/xiaomi/spes
-          git clone https://github.com/muralivijay/kernel_xiaomi_sm6225 --depth=1 kernel/xiaomi/spes
-          git clone https://github.com/LineageOS/android_hardware_xiaomi --depth=1 -b lineage-18.1 hardware/xiaomi
 
       - name: Build LineageOS
         run: |
-          source build/envsetup.sh
-          lunch lineage_spes-userdebug
-          brunch lineage_spes-userdebug
+          build.sh -b out
+          build/prepare-fake-ota.sh out/device_spes.tar.xz ota
+          
