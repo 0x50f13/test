@@ -3,8 +3,13 @@ version: '2'
 workflows:
   build:
     jobs:
-      - build_lineageos_18.1
-
+      - build_lineageos_18.1:
+          filters:
+           branches:
+            only:
+                - main 
+            
+ 
 jobs:
   build_lineageos_18.1:
     container:
