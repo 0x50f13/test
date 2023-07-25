@@ -12,7 +12,7 @@ jobs:
       - image: ubuntu:latest
 
     steps:
-      - checkout
+      - build
 
       - run: |
           apt-get update
