@@ -5,15 +5,7 @@ defaults: &defaults
   environment:
     CI: "true"
 
-workflows:
- version: 2
- build:
-   jobs:
-     - build
-            
- 
-jobs:
-  build:
-    <<: *defaults
-    steps:
-      - run: echo 'Hellow, world'
+build_task:
+  <<: *defaults
+  script:
+    - echo 'Hello, world'
