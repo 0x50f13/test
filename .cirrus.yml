@@ -1,11 +1,4 @@
-version: 2
-
-defaults: &defaults
+container:
   image: ubuntu:focal
-  environment:
-    CI: "true"
-
 build_task:
-  <<: *defaults
-  script:
-    - echo 'Hello, world'
+  build_script: bash build.sh
